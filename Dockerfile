@@ -16,17 +16,28 @@ RUN mkdir /work && cd /work && \
     apk del --no-cache --rdepends alpine-sdk automake autoconf gettext-dev
 
 FROM alpine:latest
+ARG build_date
+LABEL org.opencontainers.image.created="$build_date" \
+      org.opencontainers.image.authors="Mikhail Lazarev <mlaz@mail.ru>" \
+      org.opencontainers.image.licenses="MIT" \
+      org.opencontainers.image.title="motion" \
+      org.opencontainers.image.description="Alpine based docker container of Motion (https://motion-project.github.io/)" \
+      org.opencontainers.image.version="0.1" \
+      org.opencontainers.image.url="https://github.com/mikhalakis/motion-alpine-container"
 
 # Copy Motion binary
 COPY --from=build /usr/local /usr/local
 
-# Install dependencies and creates defaul fonfiguration
+# Install dependencies and creates defaul configuration
 RUN apk -U --no-cache upgrade && \
     apk add  --no-cache v4l-utils ffmpeg-libs libwebp libjpeg-turbo libmicrohttpd && \
     test -e /usr/local/etc/motion/motion.conf || \
     cp /usr/local/etc/motion/motion-dist.conf /usr/local/etc/motion/motion.conf
 #VOLUME /dev
 
+EXPOSE 8080/tcp
+EXPOSE 8081/tcp
+
 # Run Motion binary
-CMD "/bin/sh"
+CMD [ "motion", "-n" ]
 
