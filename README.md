@@ -9,9 +9,9 @@ This is Docker container image based on Alpine Linux. It's three times lighter t
 
 Netcams are not tested.
 
-Source of Dockerfile is vailable on [GitHub](https://github.com/mikhalakis/motion-alpine-container).
+The source of Dockerfile is vailable on [GitHub](https://github.com/mikhalakis/motion-alpine-container).
 
-Image is vailable on [DockerHub](https://hub.docker.com/repository/docker/mikhalakis/motion).
+The image is vailable on [DockerHub](https://hub.docker.com/repository/docker/mikhalakis/motion).
 
 Currently there no support for any databases, but it's easy to enable by adding necessary libraries during the build stage. You may do it by yourself if you need.
 
