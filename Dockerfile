@@ -3,7 +3,7 @@ FROM alpine:latest AS build
 # Setup environment and build Motion from source
 RUN mkdir /work && cd /work && \
     apk -U --no-cache upgrade && \
-    apk add --no-cache alpine-sdk automake autoconf gettext-dev libmicrohttpd-dev ffmpeg-dev libjpeg-turbo-dev && \
+    apk add --no-cache alpine-sdk linux-headers automake autoconf gettext-dev libmicrohttpd-dev ffmpeg-dev libjpeg-turbo-dev v4l-utils-dev && \
     git clone https://github.com/Motion-Project/motion.git  && \
     cd motion  && \
     autoreconf -fiv && \
@@ -13,7 +13,9 @@ RUN mkdir /work && cd /work && \
     make install && \
     cd ../.. && \
     rm -fr work && \
-    apk del --no-cache --rdepends alpine-sdk automake autoconf gettext-dev
+    rm -fr /usr/local/share/doc && \
+    rm -fr /usr/local/share/man && \
+    apk del --no-cache --rdepends alpine-sdk linux-headers automake autoconf gettext-dev
 
 FROM alpine:latest
 ARG build_date
@@ -22,7 +24,7 @@ LABEL org.opencontainers.image.created="$build_date" \
       org.opencontainers.image.licenses="MIT" \
       org.opencontainers.image.title="motion" \
       org.opencontainers.image.description="Alpine based docker container of Motion (https://motion-project.github.io/)" \
-      org.opencontainers.image.version="0.1" \
+      org.opencontainers.image.version="0.2" \
       org.opencontainers.image.url="https://github.com/mikhalakis/motion-alpine-container"
 
 # Copy Motion binary
