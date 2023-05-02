@@ -5,7 +5,7 @@ Alpine based docker container of Motion (https://motion-project.github.io/).
 Motion is a program that monitors the video signal from one or more cameras and is able to detect if a significant part of the picture has changed. Or in other words, it can detect motion.
 
 ## About this image
-This is Docker container image based on Alpine Linux. It's three times lighter than original [Motion-Project/motion-docker](https://github.com/Motion-Project/motion-docker) and it can capture locally connected USB webcams.
+This is Docker container image based on Alpine Linux. It's three times lighter than original [motionproject/motion](https://hub.docker.com/r/motionproject/motion) and it can capture locally connected USB webcams.
 
 Netcams are not tested.
 
