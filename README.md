@@ -15,7 +15,7 @@ The image is vailable on [DockerHub](https://hub.docker.com/repository/docker/mi
 
 Currently there no support for any databases, but it's easy to enable by adding necessary libraries during the build stage. You may do it by yourself if you need.
 
-## En example how to run:
+## An example how to run:
 ```
 docker run -d --name=motion -v ./motion.conf:/usr/local/etc/motion/motion.conf \
 --device /dev/video0 -p 8080:8080 -p 8081:8081 mikhalakis/motion
